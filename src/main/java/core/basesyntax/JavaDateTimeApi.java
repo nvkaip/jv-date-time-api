@@ -37,7 +37,7 @@ public class JavaDateTimeApi {
 
     /**
      * Известно на сколько часов нужно изменить текущее время.
-     * Верните измененное текущее время на указаную величинув, округленную до секунд.
+     * Верните измененное текущее время на указаную величину, округленную до секунд.
      **/
     public LocalTime addHours(Integer hoursToAdd) {
         return LocalTime.now();
@@ -45,7 +45,7 @@ public class JavaDateTimeApi {
 
     /**
      * Известно на сколько минут нужно изменить текущее время.
-     * Верните измененное текущее время на указаную величинув, округленную до секунд.
+     * Верните измененное текущее время на указаную величину, округленную до секунд.
      **/
     public LocalTime addMinutes(Integer minutesToAdd) {
         return LocalTime.now();
@@ -53,7 +53,7 @@ public class JavaDateTimeApi {
 
     /**
      * Известно на сколько секунд нужно изменить текущее время.
-     * Верните измененное текущее время на указаную величинув, округленную до секунд.
+     * Верните измененное текущее время на указаную величину, округленную до секунд.
      **/
     public LocalTime addSeconds(Integer secondsToAdd) {
         return LocalTime.now();
@@ -80,11 +80,11 @@ public class JavaDateTimeApi {
 
     /**
      * Даны две временные зоны.
-     * Верните часовую разницу между двумя временными зонами.
-     * @return positive Integer
+     * Верните Optional часовой разницы между двумя временными зонами.
+     * @return Optional positive Integer
      */
-    public Integer diffBetweenZones(String firstZone, String secondZone) {
-        return null;
+    public Optional<Integer> diffBetweenZones(String firstZone, String secondZone) {
+        return Optional.empty();
     }
 
     /**
@@ -102,10 +102,10 @@ public class JavaDateTimeApi {
 
     /**
      * Дана строка в виде "yyyymmdd".
-     * Необходимо вернуть дату в LocalDate формате
+     * Необходимо вернуть Optional даты в LocalDate формате
      */
-    public LocalDate parseDate(String date) {
-        return LocalDate.now();
+    public Optional<LocalDate> parseDate(String date) {
+        return Optional.empty();
     }
 
     /**

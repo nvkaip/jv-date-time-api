@@ -9,14 +9,12 @@ import java.time.LocalTime;
 import java.time.Month;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
-import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
-import java.time.zone.ZoneRulesException;
 import java.util.Optional;
 
 public class JavaDateTimeApiTest {
 
-    private JavaDateTimeApi javaDateTimeApi = new JavaDateTimeApi();
+    private JavaDateTimeApiAnswers javaDateTimeApi = new JavaDateTimeApiAnswers();
 
     @Test
     public void todayDateFull() {
@@ -104,14 +102,16 @@ public class JavaDateTimeApiTest {
 
     @Test
     public void diffBetweenZones() {
-        Integer expected = 6;
-        Integer result = javaDateTimeApi.diffBetweenZones("America/Puerto_Rico", "Europe/Paris");
+        Optional<Integer> expected = Optional.of(6);
+        Optional<Integer> result = javaDateTimeApi.diffBetweenZones("America/Puerto_Rico", "Europe/Paris");
         Assert.assertEquals(expected, result);
     }
 
-    @Test(expected = ZoneRulesException.class)
+    @Test
     public void diffBetweenZonesIncorrect() {
-        javaDateTimeApi.diffBetweenZones("Europe/Lviv", "Europe/Paris");
+        Optional<Integer> expected = Optional.empty();
+        Optional<Integer> result = javaDateTimeApi.diffBetweenZones("Europe/Lviv", "Europe/Paris");
+        Assert.assertEquals(expected, result);
     }
 
     @Test
@@ -125,14 +125,17 @@ public class JavaDateTimeApiTest {
 
     @Test
     public void parseDate() {
-        LocalDate expected = LocalDate.of(2019, 9, 21);
-        LocalDate result = javaDateTimeApi.parseDate("20190921");
+        LocalDate localDate = LocalDate.of(2019, 9, 21);
+        Optional<LocalDate> expected = Optional.of(localDate);
+        Optional<LocalDate> result = javaDateTimeApi.parseDate("20190921");
         Assert.assertEquals(expected, result);
     }
 
-    @Test(expected = DateTimeParseException.class)
+    @Test
     public void parseDateIncorrect() {
-        javaDateTimeApi.parseDate("20192929");
+        Optional<LocalDate> expected = Optional.empty();
+        Optional<LocalDate> result = javaDateTimeApi.parseDate("20193921");
+        Assert.assertEquals(expected, result);
     }
 
     @Test
