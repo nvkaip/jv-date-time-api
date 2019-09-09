@@ -36,43 +36,43 @@ public class JavaDateTimeApi {
     }
 
     /**
-     * Известно на сколько часов нужно изменить текущее время.
-     * Верните измененное текущее время на указаную величину, округленную до секунд.
+     * Дано время и на сколько часов нужно его изменить.
+     * Верните измененное время на указаную величину.
      **/
-    public LocalTime addHours(Integer hoursToAdd) {
+    public LocalTime addHours(LocalTime localTime, Integer hoursToAdd) {
         return LocalTime.now();
     }
 
     /**
-     * Известно на сколько минут нужно изменить текущее время.
-     * Верните измененное текущее время на указаную величину, округленную до секунд.
+     * Дано время и на сколько минут нужно его изменить.
+     * Верните измененное время на указаную величину.
      **/
-    public LocalTime addMinutes(Integer minutesToAdd) {
+    public LocalTime addMinutes(LocalTime localTime, Integer minutesToAdd) {
         return LocalTime.now();
     }
 
     /**
-     * Известно на сколько секунд нужно изменить текущее время.
-     * Верните измененное текущее время на указаную величину, округленную до секунд.
+     * Дано время и на сколько секунд нужно его изменить.
+     * Верните измененное время на указаную величину.
      **/
-    public LocalTime addSeconds(Integer secondsToAdd) {
+    public LocalTime addSeconds(LocalTime localTime, Integer secondsToAdd) {
         return LocalTime.now();
     }
 
     /**
-     * @param numberOfWeeks количество недель
-     * @return Добавте к текущей дате полученое количество недель и верните получившуюся дату
+     * Дана дата и на сколько недель нужно ее изменить.
+     * Верните получившуюся дату
      */
-    public LocalDate addWeeks(Integer numberOfWeeks) {
+    public LocalDate addWeeks(LocalDate localDate, Integer numberOfWeeks) {
         return LocalDate.now();
     }
 
     /**
      * Дана произвольная дата getDate.
-     * Определите соотношение сегодня к getDate и верните строку:
-     * - "getDate is after текущая дата" - если getDate в будующем
-     * - "getDate is before текущая дата" - если getDate в прошлом
-     * - "getDate is today" - если getDate - сегодня
+     * Определите соотношение сегодня к someDate и верните строку:
+     * - "someDate is after текущая дата" - если getDate в будующем
+     * - "someDate is before текущая дата" - если getDate в прошлом
+     * - "someDate is today" - если someDate - сегодня
      */
     public String beforeOrAfter(LocalDate someDate) {
         return someDate + "is today";
@@ -119,7 +119,8 @@ public class JavaDateTimeApi {
     /**
      * Даны произвольные время и дата.
      * Верните строку с датой и временем в формате
-     * "день(2 цифры) месяц(полное название на английском) год(4 цифры) час(24 часа):минуты"
+     * "день(2 цифры) месяц(полное название на английском) год(4 цифры) час(24 часа):минуты",
+     * например: "01 January 2000 18:00",
      * или сообщение "dateTime can't be formatted!"
      */
     public String formatDate(LocalDateTime dateTime) {

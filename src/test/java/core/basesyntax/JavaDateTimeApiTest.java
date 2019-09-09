@@ -9,12 +9,13 @@ import java.time.LocalTime;
 import java.time.Month;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
-import java.time.temporal.ChronoUnit;
 import java.util.Optional;
 
 public class JavaDateTimeApiTest {
 
-    private JavaDateTimeApiAnswers javaDateTimeApi = new JavaDateTimeApiAnswers();
+    private JavaDateTimeApi javaDateTimeApi = new JavaDateTimeApi();
+    private static final LocalDateTime LOCAL_DATE_TIME =
+            LocalDateTime.of(2000, 12, 31, 23, 59, 59);
 
     @Test
     public void todayDateFull() {
@@ -25,9 +26,9 @@ public class JavaDateTimeApiTest {
 
     @Test
     public void getDate() {
-        Integer[] dateParams = {2018, 12, 1};
+        Integer[] dateParams = {2018, 12, 21};
         Optional<LocalDate> expected =
-                Optional.of(LocalDate.of(dateParams[0], dateParams[1], dateParams[2]));
+                Optional.of(LocalDate.of(2018, 12, 21));
         Optional<LocalDate> result = javaDateTimeApi.getDate(dateParams);
         Assert.assertEquals(expected, result);
     }
@@ -50,29 +51,29 @@ public class JavaDateTimeApiTest {
 
     @Test
     public void addHours() {
-        LocalTime expected = LocalTime.now().plusHours(268).truncatedTo(ChronoUnit.SECONDS);
-        LocalTime result = javaDateTimeApi.addHours(268);
+        LocalTime expected = LocalTime.of(3, 59, 59);
+        LocalTime result = javaDateTimeApi.addHours(LOCAL_DATE_TIME.toLocalTime(), 268);
         Assert.assertEquals(expected, result);
     }
 
     @Test
     public void addMinutes() {
-        LocalTime expected = LocalTime.now().plusMinutes(589).truncatedTo(ChronoUnit.SECONDS);
-        LocalTime result = javaDateTimeApi.addMinutes(589);
+        LocalTime expected = LocalTime.of(9, 48, 59);
+        LocalTime result = javaDateTimeApi.addMinutes(LOCAL_DATE_TIME.toLocalTime(), 589);
         Assert.assertEquals(expected, result);
     }
 
     @Test
     public void addSeconds() {
-        LocalTime expected = LocalTime.now().plusSeconds(369589).truncatedTo(ChronoUnit.SECONDS);
-        LocalTime result = javaDateTimeApi.addSeconds(369589);
+        LocalTime expected = LocalTime.of(6, 39, 48);
+        LocalTime result = javaDateTimeApi.addSeconds(LOCAL_DATE_TIME.toLocalTime(), 369589);
         Assert.assertEquals(expected, result);
     }
 
     @Test
     public void addWeeks() {
-        LocalDate expected = LocalDate.now().plusWeeks(2);
-        LocalDate result = javaDateTimeApi.addWeeks(2);
+        LocalDate expected = LocalDate.of(2001, 1, 14);
+        LocalDate result = javaDateTimeApi.addWeeks(LOCAL_DATE_TIME.toLocalDate(), 2);
         Assert.assertEquals(expected, result);
     }
 
