@@ -12,8 +12,8 @@ public class JavaDateTimeApi {
      * Верните текущую дату в виде строки в зависимости от запроса.
      *
      * @param datePart Запрос на часть даты или всю дата целиком:
-     *                 - FULL - текущая дата целиком год, месяц, день (число месяца),
-     *                 возвращаемое значение по умолчанию;
+     *                 - FULL - текущая дата целиком год, месяц, день (число месяца)
+     *                 в формате YYYY-MM-DD, возвращаемое значение по умолчанию;
      *                 - YEAR - текущий год;
      *                 - MONTH - название текущего месяца;
      *                 - DAY - текущий день (число месяца);
@@ -31,23 +31,31 @@ public class JavaDateTimeApi {
      *                   - 3-й элемент массива - день (число);
      **/
 
-    public Optional<LocalDate> someDate(Integer[] dateParams) {
+    public Optional<LocalDate> getDate(Integer[] dateParams) {
         return Optional.empty();
     }
 
     /**
-     * Известно на сколько нужно изменить время (часть времени и на сколько надо ее изменить).
-     *
-     * @param timePart  часть времение, которую надо изменить:
-     *                  - HOURS - часы
-     *                  изменяемое значение по умолчанию
-     *                  - MINUTES - минуты
-     *                  - SECONDS - секунды
-     * @param timeToAdd величина, на которую следует изменит часть времени полученную в timePart
-     * @return Верните измененное текущее время на величину указаную в запросе
+     * Известно на сколько часов нужно изменить текущее время.
+     * Верните измененное текущее время на указаную величинув, округленную до секунд.
      **/
+    public LocalTime addHours(Integer hoursToAdd) {
+        return LocalTime.now();
+    }
 
-    public LocalTime addTime(DateTimePart timePart, Integer timeToAdd) {
+    /**
+     * Известно на сколько минут нужно изменить текущее время.
+     * Верните измененное текущее время на указаную величинув, округленную до секунд.
+     **/
+    public LocalTime addMinutes(Integer minutesToAdd) {
+        return LocalTime.now();
+    }
+
+    /**
+     * Известно на сколько секунд нужно изменить текущее время.
+     * Верните измененное текущее время на указаную величинув, округленную до секунд.
+     **/
+    public LocalTime addSeconds(Integer secondsToAdd) {
         return LocalTime.now();
     }
 
@@ -60,11 +68,11 @@ public class JavaDateTimeApi {
     }
 
     /**
-     * Дана произвольная дата someDate.
-     * Определите соотношение сегодня к someDate и верните строку:
-     * - "someDate is after текущая дата" - если someDate в будующем
-     * - "someDate is before текущая дата" - если someDate в прошлом
-     * - "someDate is today" - если someDate - сегодня
+     * Дана произвольная дата getDate.
+     * Определите соотношение сегодня к getDate и верните строку:
+     * - "getDate is after текущая дата" - если getDate в будующем
+     * - "getDate is before текущая дата" - если getDate в прошлом
+     * - "getDate is today" - если getDate - сегодня
      */
     public String beforeOrAfter(LocalDate someDate) {
         return someDate + "is today";
@@ -73,7 +81,6 @@ public class JavaDateTimeApi {
     /**
      * Даны две временные зоны.
      * Верните часовую разницу между двумя временными зонами.
-     *
      * @return positive Integer
      */
     public Integer diffBetweenZones(String firstZone, String secondZone) {
@@ -81,18 +88,13 @@ public class JavaDateTimeApi {
     }
 
     /**
-     * Необходимо расчитать и вернуть количество дней оставшихся до Нового Года,
-     * используя классы только из пакета java.time
-     *
-     * @return количество дней.
-     **/
-    public Integer daysToNewYear() {
-        return null;
-    }
-
-    /**
      * Данны дата и время. Надо вернуть дату и время с местным временным смещением,
      * пусть это будет для Украины "+02:00".
+     * Приведем пример: при вызове метода передается переменная типа LocalDateTime,
+     * в формате "2019-09-06T13:17", нам надо вернуть переменную типа OffsetDateTime,
+     * в формате "2019-09-06T13:17+02:00", где "+02:00" и будет смещение для нашей
+     * временной зоны.
+     * OffsetDateTime советуют использовать при записи даты в базу данных.
      **/
     public OffsetDateTime offsetDateTime(LocalDateTime localTime) {
         return OffsetDateTime.now();
