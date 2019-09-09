@@ -16,7 +16,7 @@ import java.util.Optional;
 
 public class JavaDateTimeApiTest {
 
-    private JavaDateTimeApiAnswers javaDateTimeApi = new JavaDateTimeApiAnswers();
+    private JavaDateTimeApi javaDateTimeApi = new JavaDateTimeApi();
 
     @Test
     public void todayDateFull() {
